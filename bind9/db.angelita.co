@@ -1,0 +1,31 @@
+;
+; BIND reverse data file for local loopback interface
+;
+$TTL	604800
+@	IN		SOA		angelita.co. root.angelita.co. (
+		   20230619		; Serial	Versão do arquivo
+			 604800		; Refresh 	A frequencia (em segundos) que os servidores secundários solicitar os dados do servidor primario para verificar se houve mudanças
+			  86400		; Retry		O tempo (em segundos) entre entre uma consulta e outra, caso haja falhas
+			2419200		; Expire	Se um servidor secundário não obtiver uma resposta do servidor primário durante esse período de tempo, ele deve parar de responder às consultas para a zona.
+			 604800 )	; Negative Cache TTL 	Tempo que os dados ficam armazenados em cache
+
+
+; name servers - NS records
+@			IN      NS      ns1.angelita.co.
+
+; name servers - A records
+ns1			IN      A      	172.29.0.2
+www			IN      A     	172.29.0.3
+mail		IN      A      	172.29.0.4
+intranet 	IN		A		192.168.0.2
+mx			IN		A		192.168.0.200
+mx2			IN		A		192.168.0.201
+mx3			IN		A		192.168.0.202
+
+; name servers - CNAME records
+local		IN		CNAME	intranet
+
+; name servers - MX records
+@			IN		MX	10	mx
+@			IN		MX	20	mx2
+@			IN		MX	30	mx3
