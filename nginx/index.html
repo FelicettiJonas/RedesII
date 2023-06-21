@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redes</title>
+  <link rel="icon" href="https://cdn.waifu.im/6264.jpg">
+</head>
+<body id="body">
+  <div style="align-items: center; width: 100%; text-align: center;">
+      <h1>HELLO WORLD!!!</h1>
+      <img id="img" src="" style="height: 88vh;">
+  </div>
+</body>
+
+
+<script>
+  let response;
+  let img = document.getElementById("img");
+  let body = document.getElementById("body");
+  fetch("https://api.waifu.im/search").then(function(response) {
+    return response.json();
+  }).then(function(data) {
+      response = data;
+      img.setAttribute('src', response.images[0].url);
+      body.style.backgroundColor = response.images[0].dominant_color;
+  }).catch(function(err) {
+    console.log('Fetch Error :-S', err);
+  });
+  </script>
+  
+</html>
